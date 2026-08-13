@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision Tasks - Projects</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Link Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=42" />
+  </head>
+  <body>
+    <!-- Main Mockup Workspace Container -->
+    <div class="mockups-container">
+      <!-- PHONE DEVICE: PROJECTS SCREEN -->
+      <div class="phone-device" id="device-projects">
+        <!-- Simulated Notch (Visible on desktop) -->
+        <div class="phone-notch"></div>
+
+        <!-- Simulated Phone Status Bar (Visible on desktop) -->
+        <div class="phone-status-bar">
+          <span class="status-time">09:41</span>
+          <div class="status-icons">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path
+                d="M12 21a2 2 0 1 1-2-2 2 2 0 0 1 2 2zm1-5a3.99 4 0 0 0-4-4 3.99 4 0 0 0-4 4 1 1 0 0 0 2 0 2 2 0 0 1 2-2 2 2 0 0 1 2 2 1 1 0 0 0 2 0zm1-5a7.97 8 0 0 0-8-8 7.97 8 0 0 0-8 8 1 1 0 0 0 2 0 5.98 6 0 0 1 6-6 5.98 6 0 0 1 6 6 1 1 0 0 0 2 0z"
+              />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="currentColor"
+              style="transform: rotate(90deg)"
+            >
+              <rect
+                x="6"
+                y="2"
+                width="12"
+                height="20"
+                rx="3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <rect x="8" y="5" width="8" height="14" rx="1.5" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Phone Screen Area -->
+        <div class="phone-screen-content">
+          <!-- Projects Header -->
+          <header class="screen-header">
+            <a
+              href="index.html"
+              class="icon-btn header-back-btn"
+              aria-label="Back to Dashboard"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </a>
+            <div class="header-right-actions">
+              <button class="icon-btn" aria-label="Notifications">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+              </button>
+              <button class="icon-btn" aria-label="Filter">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="21" x2="4" y2="14" />
+                  <line x1="4" y1="10" x2="4" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="3" />
+                  <line x1="20" y1="21" x2="20" y2="16" />
+                  <line x1="20" y1="12" x2="20" y2="3" />
+                  <line x1="1" y1="14" x2="7" y2="14" />
+                  <line x1="9" y1="8" x2="15" y2="8" />
+                  <line x1="17" y1="12" x2="23" y2="12" />
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- Section Title -->
+          <div class="section-title-wrap" style="margin-bottom: 24px;">
+            <span class="timeline-meta" style="font-weight: 500; font-size: 11px; color: var(--text-secondary);">Overview</span>
+            <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--text-primary); margin-top: 2px;">Projects</h2>
+          </div>
+
+          <!-- Project Scrollable List Container -->
+          <div class="projects-list-scroll-wrapper" style="overflow-y: auto; flex: 1; padding-right: 2px; margin-bottom: 10px;">
+            <div class="projects-vertical-list" id="projects-list" style="display: flex; flex-direction: column; gap: 16px;">
+              
+              <!-- Project Card 1 (Xyora) -->
+              <div class="project-card-custom project-xyora" onclick="window.location.href='project-detail.html?project=Xyora'">
+                <div class="project-logo-container">
+                  <img src="projects/xyora.svg" alt="Xyora" class="project-logo-img" />
+                </div>
+                <div class="project-detail-container">
+                  <h4 class="project-name">Xyora</h4>
+                  <span class="project-status-dot"></span>
+                </div>
+              </div>
+
+              <!-- Project Card 2 (Computask) -->
+              <div class="project-card-custom project-computask" onclick="window.location.href='project-detail.html?project=Computask'">
+                <div class="project-logo-container">
+                  <img src="projects/computask.png" alt="Computask" class="project-logo-img" />
+                </div>
+                <div class="project-detail-container">
+                  <h4 class="project-name">Computask</h4>
+                  <span class="project-status-dot"></span>
+                </div>
+              </div>
+
+              <!-- Project Card 3 (MKT Central Directory) -->
+              <div class="project-card-custom project-ctigroup" onclick="window.location.href='project-detail.html?project=MKT%20Central%20Directory'">
+                <div class="project-logo-container">
+                  <img src="projects/mkt-central-directory.png" alt="MKT Central Directory" class="project-logo-img" />
+                </div>
+                <div class="project-detail-container">
+                  <h4 class="project-name">MKT Central Directory</h4>
+                  <span class="project-status-dot on-hold"></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Bottom Navigation Bar (links to other pages) -->
+        <nav class="phone-bottom-nav">
+          <a href="index.html" class="nav-btn" title="Home">
+            <i class="fa-solid fa-house"></i>
+          </a>
+          <a href="schedule.html" class="nav-btn" title="Calendar">
+            <i class="fa-regular fa-calendar"></i>
+          </a>
+          <a href="project.html" class="nav-btn active" title="Projects">
+            <i class="fa-solid fa-briefcase"></i>
+          </a>
+          <a href="notes.html" class="nav-btn" title="Notes">
+            <i class="fa-regular fa-pen-to-square"></i>
+          </a>
+        </nav>
+
+        <!-- Bottom Home Line Indicator -->
+        <div class="phone-home-indicator"></div>
+
+        <!-- Task Form sliding bottom sheet overlay -->
+        <div class="bottom-sheet" id="sheet-create-task">
+          <div class="sheet-backdrop"></div>
+          <div class="sheet-content">
+            <div class="sheet-handle-bar">
+              <span class="sheet-handle"></span>
+            </div>
+            <div class="sheet-body">
+              <form id="task-creation-form">
+                <div class="form-group">
+                  <label class="field-label">Title</label>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="t-title"
+                    placeholder="Project/Task Title"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Creation date</label>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="t-cdate"
+                    value="17 August 2020"
+                  />
+                </div>
+                <div class="form-group">
+                  <div class="date-time-header">
+                    <label class="field-label">Start date & time</label>
+                    <div class="month-selector-dropdown">
+                      <span class="month-label">August</span>
+                      <svg
+                        class="dropdown-chevron"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                      >
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="modal-date-picker-row">
+                    <div class="modal-date-col" data-day="10">
+                      <span class="m-day-name">MON</span
+                      ><span class="m-day-number">10</span>
+                    </div>
+                    <div class="modal-date-col active-m-day" data-day="11">
+                      <span class="m-day-name">TUE</span
+                      ><span class="m-day-number">11</span
+                      ><span class="active-dot"></span>
+                    </div>
+                    <div class="modal-date-col" data-day="12">
+                      <span class="m-day-name">WED</span
+                      ><span class="m-day-number">12</span>
+                    </div>
+                    <div class="modal-date-col" data-day="13">
+                      <span class="m-day-name">THU</span
+                      ><span class="m-day-number">13</span>
+                    </div>
+                    <div class="modal-date-col" data-day="14">
+                      <span class="m-day-name">FRI</span
+                      ><span class="m-day-number">14</span>
+                    </div>
+                    <div class="modal-date-col" data-day="15">
+                      <span class="m-day-name">SAT</span
+                      ><span class="m-day-number">15</span>
+                    </div>
+                    <div class="modal-date-col" data-day="16">
+                      <span class="m-day-name">SUN</span
+                      ><span class="m-day-number">16</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-toggle-group">
+                  <span class="toggle-label">Get alert for this task</span>
+                  <label class="switch">
+                    <input type="checkbox" id="t-alert" checked />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <button type="submit" class="cta-submit-btn">
+                  Create project
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="toast-message">
+      Project created successfully!
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+  </body>
+</html>

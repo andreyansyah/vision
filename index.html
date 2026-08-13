@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision Tasks - Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Link Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=42" />
+  </head>
+  <body>
+    <!-- Main Mockup Workspace Container -->
+    <div class="mockups-container">
+      <!-- PHONE DEVICE: DASHBOARD SCREEN ("My Tasks") -->
+      <div class="phone-device" id="device-dashboard">
+        <!-- Simulated Notch (Visible on desktop) -->
+        <div class="phone-notch"></div>
+
+        <!-- Simulated Phone Status Bar (Visible on desktop) -->
+        <div class="phone-status-bar">
+          <span class="status-time">09:41</span>
+          <div class="status-icons">
+            <!-- Wifi Icon -->
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path
+                d="M12 21a2 2 0 1 1-2-2 2 2 0 0 1 2 2zm1-5a3.99 4 0 0 0-4-4 3.99 4 0 0 0-4 4 1 1 0 0 0 2 0 2 2 0 0 1 2-2 2 2 0 0 1 2 2 1 1 0 0 0 2 0zm1-5a7.97 8 0 0 0-8-8 7.97 8 0 0 0-8 8 1 1 0 0 0 2 0 5.98 6 0 0 1 6-6 5.98 6 0 0 1 6 6 1 1 0 0 0 2 0z"
+              />
+            </svg>
+            <!-- Battery Icon -->
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="currentColor"
+              style="transform: rotate(90deg)"
+            >
+              <rect
+                x="6"
+                y="2"
+                width="12"
+                height="20"
+                rx="3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <rect x="8" y="5" width="8" height="14" rx="1.5" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Phone Screen Area -->
+        <div class="phone-screen-content">
+          <!-- Dashboard Header -->
+          <header class="screen-header">
+            <button class="icon-btn header-menu-btn" aria-label="Open Menu">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <line
+                  x1="4"
+                  y1="7"
+                  x2="20"
+                  y2="7"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="4"
+                  y1="14"
+                  x2="14"
+                  y2="14"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+            <div class="header-right-actions">
+              <button class="icon-btn" aria-label="Notifications">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+              </button>
+              <button class="icon-btn" aria-label="Filter">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="21" x2="4" y2="14" />
+                  <line x1="4" y1="10" x2="4" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="3" />
+                  <line x1="20" y1="21" x2="20" y2="16" />
+                  <line x1="20" y1="12" x2="20" y2="3" />
+                  <line x1="1" y1="14" x2="7" y2="14" />
+                  <line x1="9" y1="8" x2="15" y2="8" />
+                  <line x1="17" y1="12" x2="23" y2="12" />
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- Profile Summary Card -->
+          <div class="profile-summary">
+            <div class="profile-avatar-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150"
+                alt="Jasmine Avatar"
+                class="profile-img"
+              />
+              <span class="active-dot"></span>
+            </div>
+            <div class="profile-info">
+              <h2>Hi, Jasmine</h2>
+              <p>Welcome back</p>
+            </div>
+          </div>
+
+          <!-- Section Title -->
+          <div class="section-title-wrap">
+            <h3>My tasks</h3>
+          </div>
+
+          <!-- Category Slider Strip -->
+          <div class="category-tabs-container">
+            <div class="category-tabs">
+              <button class="category-tab active" data-category="recently">
+                Recently
+              </button>
+              <button class="category-tab" data-category="today">Today</button>
+              <button class="category-tab" data-category="upcoming">
+                Upcoming
+              </button>
+              <button class="category-tab" data-category="later">Later</button>
+            </div>
+          </div>
+
+          <!-- Swipeable Task Cards -->
+          <div class="swipe-cards-container">
+            <div class="swipe-cards">
+              <!-- Card 1 -->
+              <div class="task-card gradient-purple-indigo">
+                <div class="card-decor-circles">
+                  <span class="decor-c1"></span>
+                  <span class="decor-c2"></span>
+                </div>
+                <div class="card-top">
+                  <span class="badge-time">1 week left</span>
+                </div>
+                <h4 class="card-title">User interface design</h4>
+                <div class="card-bottom">
+                  <div class="progress-section">
+                    <div class="progress-info">
+                      <span>Progress</span>
+                      <span class="progress-val">50%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="task-card gradient-dark-indigo">
+                <div class="card-decor-waves">
+                  <svg
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                    class="decor-wave"
+                  >
+                    <path
+                      d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z"
+                      fill="rgba(255,255,255,0.06)"
+                    />
+                  </svg>
+                </div>
+                <div class="card-top">
+                  <span class="badge-time">2 weeks left</span>
+                </div>
+                <h4 class="card-title">Wireframe elements</h4>
+                <div class="card-bottom">
+                  <div class="progress-section">
+                    <div class="progress-info">
+                      <span>Progress</span>
+                      <span class="progress-val">75%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="task-card gradient-black-violet">
+                <div class="card-top">
+                  <span class="badge-time">3 weeks left</span>
+                </div>
+                <h4 class="card-title">Landscape design</h4>
+                <div class="card-bottom">
+                  <div class="progress-section">
+                    <div class="progress-info">
+                      <span>Progress</span>
+                      <span class="progress-val">25%</span>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Tasks List -->
+          <div class="task-list-section">
+            <div class="list-header">
+              <h5>Active List</h5>
+            </div>
+            <div class="task-list-items" id="dashboard-task-list">
+              <!-- List Card 1 -->
+              <div class="list-item-card">
+                <div class="list-item-icon-bg bg-soft-blue">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="9" y1="9" x2="15" y2="9" />
+                    <line x1="9" y1="13" x2="15" y2="13" />
+                    <line x1="9" y1="17" x2="13" y2="17" />
+                  </svg>
+                </div>
+                <div class="list-item-details">
+                  <h6>Lorem Ipsum dolor</h6>
+                  <p>17 August 2020</p>
+                </div>
+                <button class="list-item-action-btn" aria-label="Task Actions">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    fill="currentColor"
+                  >
+                    <circle cx="12" cy="5" r="1.5" />
+                    <circle cx="12" cy="12" r="1.5" />
+                    <circle cx="12" cy="19" r="1.5" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- List Card 2 -->
+              <div class="list-item-card">
+                <div class="list-item-icon-bg bg-soft-indigo">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                    />
+                    <path d="M9 12l2 2 4-4" />
+                  </svg>
+                </div>
+                <div class="list-item-details">
+                  <h6>Lorem Ipsum dolor</h6>
+                  <p>28 July 2020</p>
+                </div>
+                <button class="list-item-action-btn" aria-label="Task Actions">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    fill="currentColor"
+                  >
+                    <circle cx="12" cy="5" r="1.5" />
+                    <circle cx="12" cy="12" r="1.5" />
+                    <circle cx="12" cy="19" r="1.5" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Bottom Navigation Bar (links to other pages) -->
+        <nav class="phone-bottom-nav">
+          <a href="index.html" class="nav-btn active" title="Home">
+            <i class="fa-solid fa-house"></i>
+          </a>
+          <a href="schedule.html" class="nav-btn" title="Calendar">
+            <i class="fa-regular fa-calendar"></i>
+          </a>
+          <a href="project.html" class="nav-btn" title="Projects">
+            <i class="fa-solid fa-briefcase"></i>
+          </a>
+          <a href="notes.html" class="nav-btn" title="Notes">
+            <i class="fa-regular fa-pen-to-square"></i>
+          </a>
+        </nav>
+
+        <!-- Bottom Home Line Indicator -->
+        <div class="phone-home-indicator"></div>
+
+        <!-- Task Form sliding bottom sheet overlay -->
+        <div class="bottom-sheet" id="sheet-create-task">
+          <div class="sheet-backdrop"></div>
+          <div class="sheet-content">
+            <div class="sheet-handle-bar">
+              <span class="sheet-handle"></span>
+            </div>
+            <div class="sheet-body">
+              <form id="task-creation-form">
+                <div class="form-group">
+                  <label class="field-label">Title</label>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="t-title"
+                    placeholder="Task Title"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Creation date</label>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="t-cdate"
+                    value="17 August 2020"
+                  />
+                </div>
+                <div class="form-group">
+                  <div class="date-time-header">
+                    <label class="field-label">Start date & time</label>
+                    <div class="month-selector-dropdown">
+                      <span class="month-label">August</span>
+                      <svg
+                        class="dropdown-chevron"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                      >
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="modal-date-picker-row">
+                    <div class="modal-date-col" data-day="10">
+                      <span class="m-day-name">MON</span
+                      ><span class="m-day-number">10</span>
+                    </div>
+                    <div class="modal-date-col active-m-day" data-day="11">
+                      <span class="m-day-name">TUE</span
+                      ><span class="m-day-number">11</span
+                      ><span class="active-dot"></span>
+                    </div>
+                    <div class="modal-date-col" data-day="12">
+                      <span class="m-day-name">WED</span
+                      ><span class="m-day-number">12</span>
+                    </div>
+                    <div class="modal-date-col" data-day="13">
+                      <span class="m-day-name">THU</span
+                      ><span class="m-day-number">13</span>
+                    </div>
+                    <div class="modal-date-col" data-day="14">
+                      <span class="m-day-name">FRI</span
+                      ><span class="m-day-number">14</span>
+                    </div>
+                    <div class="modal-date-col" data-day="15">
+                      <span class="m-day-name">SAT</span
+                      ><span class="m-day-number">15</span>
+                    </div>
+                    <div class="modal-date-col" data-day="16">
+                      <span class="m-day-name">SUN</span
+                      ><span class="m-day-number">16</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-toggle-group">
+                  <span class="toggle-label">Get alert for this task</span>
+                  <label class="switch">
+                    <input type="checkbox" id="t-alert" checked />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <button type="submit" class="cta-submit-btn">
+                  Create a task
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="toast-message">
+      Task created successfully!
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+  </body>
+</html>
