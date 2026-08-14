@@ -340,30 +340,17 @@
                           if (res.status === 'success') {
                               closeSheet();
                               
-                              // SweetAlert2 Toast
-                              Swal.fire({
-                                  toast: true,
-                                  position: 'top-end',
-                                  icon: 'success',
-                                  title: isEdit ? "Catatan berhasil diperbarui!" : "Catatan berhasil ditambahkan!",
-                                  showConfirmButton: false,
-                                  timer: 1500,
-                                  timerProgressBar: true
-                              });
+                              // Gunakan toast bawaan aplikasi yang lebih rapi
+                              showToast(isEdit ? "Catatan berhasil diperbarui!" : "Catatan berhasil ditambahkan!");
                               
                               setTimeout(() => {
                                   window.location.reload();
-                              }, 1500);
+                              }, 1200);
                           }
                       },
                       error: function(err) {
                           console.error("Gagal menyimpan catatan:", err);
-                          Swal.fire({
-                              icon: 'error',
-                              title: 'Gagal',
-                              text: 'Terjadi kesalahan saat menyimpan catatan.',
-                              confirmButtonColor: '#6C5DD3'
-                          });
+                          showToast("Terjadi kesalahan saat menyimpan catatan.");
                       }
                   });
               });
@@ -381,6 +368,7 @@
                   return;
               }
               
+              // Gunakan SweetAlert2 khusus untuk konfirmasi hapus agar terlihat premium
               Swal.fire({
                   title: 'Apakah Anda yakin?',
                   text: "Catatan ini akan dihapus secara permanen!",
@@ -411,26 +399,13 @@
                                       }
                                   }, 300);
                                   
-                                  // SweetAlert2 Toast
-                                  Swal.fire({
-                                      toast: true,
-                                      position: 'top-end',
-                                      icon: 'success',
-                                      title: 'Catatan berhasil dihapus!',
-                                      showConfirmButton: false,
-                                      timer: 1500,
-                                      timerProgressBar: true
-                                  });
+                                  // Gunakan toast bawaan aplikasi
+                                  showToast("Catatan berhasil dihapus!");
                               }
                           },
                           error: function(err) {
                               console.error("Gagal menghapus catatan:", err);
-                              Swal.fire({
-                                  icon: 'error',
-                                  title: 'Gagal',
-                                  text: 'Gagal menghapus catatan.',
-                                  confirmButtonColor: '#6C5DD3'
-                              });
+                              showToast("Gagal menghapus catatan.");
                           }
                       });
                   }
