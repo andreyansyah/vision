@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
@@ -15,9 +16,10 @@ Route::get('/schedule', function () {
     return view('schedule');
 });
 
-Route::get('/notes', function () {
-    return view('notes');
-});
+Route::get('/notes', [NoteController::class, 'index']);
+Route::post('/notes', [NoteController::class, 'store']);
+Route::put('/notes/{id}', [NoteController::class, 'update']);
+Route::delete('/notes/{id}', [NoteController::class, 'destroy']);
 
 Route::get('/project-detail', [ChatController::class, 'show'])->name('project.detail');
 Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.send');

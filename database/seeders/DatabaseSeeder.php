@@ -23,5 +23,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(ProjectSeeder::class);
+
+        // Seed default notes
+        \App\Models\Note::create([
+            'title' => 'Meeting Outline',
+            'content' => 'Discuss wireframes with the creative design team. Review progress on typography, colors, and the new visual hierarchy...'
+        ]);
+
+        \App\Models\Note::create([
+            'title' => 'App Features Idea',
+            'content' => 'Implement swipe animations on tasks, expandable monthly calendar layout, brand color pulse indicators, and inset dividers...'
+        ]);
+
+        \App\Models\Note::create([
+            'title' => 'Weekly Groceries List',
+            'content' => 'Apples, Organic bananas, Almond milk, Dark roast coffee beans, Whole wheat bread, Spinach, Avocados...'
+        ]);
     }
 }

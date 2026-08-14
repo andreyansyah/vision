@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Vision Tasks - Notes</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,7 +66,7 @@
           <!-- Notes Header -->
           <header class="screen-header">
             <a
-              href="index.html"
+              href="/"
               class="icon-btn header-back-btn"
               aria-label="Back to Dashboard"
             >
@@ -134,47 +135,30 @@
           <div class="notes-list-scroll-wrapper" style="overflow-y: auto; flex: 1; padding-right: 2px; margin-bottom: 10px;">
             <div class="notes-vertical-list" id="notes-list" style="display: flex; flex-direction: column; gap: 14px;">
               
-              <!-- Note Item 1 (Work) -->
-              <div class="note-swipe-wrapper">
-                <div class="note-delete-action">
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-                <div class="note-card-custom">
-                  <div class="note-card-header">
-                    <h4 class="note-title">Meeting Outline</h4>
+              @if (count($notes) === 0)
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; height: 100%;">
+                  <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(108, 93, 211, 0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: #6c5dd3; font-size: 32px;">
+                    <i class="fa-regular fa-clipboard"></i>
                   </div>
-                  <p class="note-snippet">Discuss wireframes with the creative design team. Review progress on typography, colors, and the new visual hierarchy...</p>
-                  <span class="note-date">13 August 2020</span>
+                  <h4 style="font-size: 15px; font-weight: 600; color: #374151; margin-bottom: 4px;">Belum Ada Catatan</h4>
+                  <p style="font-size: 12px; color: #9CA3AF; line-height: 1.4; max-width: 200px;">Klik tombol + untuk membuat catatan baru pertama Anda.</p>
                 </div>
-              </div>
-
-              <!-- Note Item 2 (Idea) -->
-              <div class="note-swipe-wrapper">
-                <div class="note-delete-action">
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-                <div class="note-card-custom">
-                  <div class="note-card-header">
-                    <h4 class="note-title">App Features Idea</h4>
+              @else
+                @foreach ($notes as $note)
+                <div class="note-swipe-wrapper" data-id="{{ $note->id }}">
+                  <div class="note-delete-action">
+                    <i class="fa-solid fa-trash-can"></i>
                   </div>
-                  <p class="note-snippet">Implement swipe animations on tasks, expandable monthly calendar layout, brand color pulse indicators, and inset dividers...</p>
-                  <span class="note-date">12 August 2020</span>
-                </div>
-              </div>
-
-              <!-- Note Item 3 (Personal) -->
-              <div class="note-swipe-wrapper">
-                <div class="note-delete-action">
-                  <i class="fa-solid fa-trash-can"></i>
-                </div>
-                <div class="note-card-custom">
-                  <div class="note-card-header">
-                    <h4 class="note-title">Weekly Groceries List</h4>
+                  <div class="note-card-custom" data-title="{{ $note->title }}" data-content="{{ $note->content }}">
+                    <div class="note-card-header">
+                      <h4 class="note-title">{{ $note->title }}</h4>
+                    </div>
+                    <p class="note-snippet">{{ Str::limit(strip_tags($note->content), 120) }}</p>
+                    <span class="note-date">{{ $note->updated_at->format('d F Y') }}</span>
                   </div>
-                  <p class="note-snippet">Apples, Organic bananas, Almond milk, Dark roast coffee beans, Whole wheat bread, Spinach, Avocados...</p>
-                  <span class="note-date">10 August 2020</span>
                 </div>
-              </div>
+                @endforeach
+              @endif
 
             </div>
           </div>
@@ -213,6 +197,7 @@
             </div>
             <div class="sheet-body">
               <form id="task-creation-form">
+                <input type="hidden" id="edit-note-id" value="" />
                 <div class="form-group">
                   <label class="field-label">Title</label>
                   <input
@@ -234,7 +219,7 @@
                     required
                   ></textarea>
                 </div>
-                <button type="submit" class="cta-submit-btn" style="margin-top: 10px;">
+                <button type="submit" class="cta-submit-btn" id="btn-submit-note" style="margin-top: 10px;">
                   Create note
                 </button>
               </form>
@@ -251,5 +236,165 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    <script>
+      $(document).ready(function() {
+          const sheet = document.getElementById('sheet-create-task');
+          const trigger = document.getElementById('trigger-create-task');
+          const titleInput = document.getElementById('t-title');
+          const descInput = document.getElementById('t-desc');
+          const editIdInput = document.getElementById('edit-note-id');
+          const submitBtn = document.getElementById('btn-submit-note');
+          const form = document.getElementById('task-creation-form');
+          
+          // Setup CSRF token header for all AJAX requests
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+          
+          // Helper: Show toast notification
+          function showToast(message) {
+              const toast = document.getElementById('toast-message');
+              if (toast) {
+                  toast.textContent = message;
+                  toast.classList.add('show-toast');
+                  setTimeout(() => {
+                      toast.classList.remove('show-toast');
+                  }, 3000);
+              }
+          }
+          
+          // Close sheet helper
+          function closeSheet() {
+              if (sheet) sheet.classList.remove('show-sheet');
+          }
+          
+          // Open sheet helper
+          function openSheet() {
+              if (sheet) sheet.classList.add('show-sheet');
+          }
+          
+          // 1. FAB Create Click: Reset fields and set to create mode
+          if (trigger) {
+              trigger.addEventListener('click', function(e) {
+                  e.stopPropagation();
+                  editIdInput.value = '';
+                  titleInput.value = '';
+                  if ($('#t-desc').data('summernote')) {
+                      $('#t-desc').summernote('code', '');
+                  } else {
+                      descInput.value = '';
+                  }
+                  submitBtn.textContent = 'Create note';
+                  openSheet();
+              });
+          }
+          
+          // 2. Note Card Click: Fill fields and set to edit mode
+          $('.note-card-custom').on('click', function() {
+              const wrapper = $(this).closest('.note-swipe-wrapper');
+              const noteId = wrapper.attr('data-id');
+              const title = $(this).attr('data-title');
+              const content = $(this).attr('data-content');
+              
+              editIdInput.value = noteId;
+              titleInput.value = title;
+              
+              if ($('#t-desc').data('summernote')) {
+                  $('#t-desc').summernote('code', content || '');
+              } else {
+                  descInput.value = content || '';
+              }
+              
+              submitBtn.textContent = 'Save changes';
+              openSheet();
+          });
+          
+          // 3. Form Submit Handler (AJAX Create or Update)
+          if (form) {
+              form.addEventListener('submit', function(e) {
+                  e.preventDefault();
+                  
+                  const noteId = editIdInput.value;
+                  const title = titleInput.value.trim();
+                  const content = $('#t-desc').data('summernote') ? $('#t-desc').summernote('code') : descInput.value.trim();
+                  
+                  if (!title) return;
+                  
+                  const isEdit = noteId && noteId.length > 0;
+                  const url = isEdit ? `/notes/${noteId}` : '/notes';
+                  const type = isEdit ? 'PUT' : 'POST';
+                  
+                  $.ajax({
+                      url: url,
+                      type: type,
+                      data: {
+                          title: title,
+                          content: content
+                      },
+                      success: function(res) {
+                          if (res.status === 'success') {
+                              closeSheet();
+                              showToast(isEdit ? "Catatan berhasil diperbarui!" : "Catatan berhasil ditambahkan!");
+                              
+                              // Reload page setelah delay kecil agar toast terlihat
+                              setTimeout(() => {
+                                  window.location.reload();
+                              }, 1200);
+                          }
+                      },
+                      error: function(err) {
+                          console.error("Gagal menyimpan catatan:", err);
+                          alert("Terjadi kesalahan saat menyimpan catatan.");
+                      }
+                  });
+              });
+          }
+          
+          // 4. Overwrite default click delete action in bindSwipeEvent
+          // Mengubah fungsi klik icon trash agar memanggil AJAX DELETE ke backend
+          $('.note-delete-action').off('click').on('click', function(e) {
+              e.stopPropagation();
+              const wrapper = $(this).closest('.note-swipe-wrapper');
+              const noteId = wrapper.attr('data-id');
+              
+              if (!noteId) {
+                  wrapper.remove();
+                  return;
+              }
+              
+              if (confirm("Apakah Anda yakin ingin menghapus catatan ini?")) {
+                  $.ajax({
+                      url: `/notes/${noteId}`,
+                      type: 'DELETE',
+                      success: function(res) {
+                          if (res.status === 'success') {
+                              wrapper.css({
+                                  transition: 'max-height 0.3s ease, margin-bottom 0.3s ease, opacity 0.3s ease',
+                                  maxHeight: '0',
+                                  marginBottom: '0',
+                                  opacity: '0'
+                              });
+                              setTimeout(() => {
+                                  wrapper.remove();
+                                  // Tampilkan empty state jika tidak ada catatan tersisa
+                                  if ($('.note-swipe-wrapper').length === 0) {
+                                      window.location.reload();
+                                  }
+                              }, 300);
+                              showToast("Catatan berhasil dihapus!");
+                          }
+                      },
+                      error: function(err) {
+                          console.error("Gagal menghapus catatan:", err);
+                          alert("Gagal menghapus catatan.");
+                      }
+                  });
+              }
+          });
+      });
+    </script>
   </body>
 </html>
