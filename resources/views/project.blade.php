@@ -157,7 +157,7 @@
             <i class="fa-solid fa-briefcase"></i>
           </a>
           <a href="/notes" class="nav-btn" title="Notes">
-            <i class="fa-regular fa-pen-to-square"></i>
+            <i class="fa-regular fa-file-lines"></i>
           </a>
         </nav>
 
