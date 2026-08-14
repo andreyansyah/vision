@@ -700,6 +700,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Handle deletion on trash icon click
         deleteBtn.addEventListener('click', () => {
+            if (wrapper.hasAttribute('data-id')) {
+                return;
+            }
             wrapper.style.transition = 'max-height 0.3s ease, margin-bottom 0.3s ease, opacity 0.3s ease';
             wrapper.style.maxHeight = '0';
             wrapper.style.marginBottom = '0';
