@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vision Tasks - Projects</title>
+    <title>Vision Tasks - Notes</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,13 +14,18 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- Link Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=42" />
+    <link rel="stylesheet" href="{{ asset('css/style.css?v=42') }}" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Summernote Lite CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
   </head>
   <body>
     <!-- Main Mockup Workspace Container -->
     <div class="mockups-container">
-      <!-- PHONE DEVICE: PROJECTS SCREEN -->
-      <div class="phone-device" id="device-projects">
+      <!-- PHONE DEVICE: NOTES SCREEN -->
+      <div class="phone-device" id="device-notes">
         <!-- Simulated Notch (Visible on desktop) -->
         <div class="phone-notch"></div>
 
@@ -57,7 +62,7 @@
 
         <!-- Phone Screen Area -->
         <div class="phone-screen-content">
-          <!-- Projects Header -->
+          <!-- Notes Header -->
           <header class="screen-header">
             <a
               href="index.html"
@@ -121,44 +126,53 @@
 
           <!-- Section Title -->
           <div class="section-title-wrap" style="margin-bottom: 24px;">
-            <span class="timeline-meta" style="font-weight: 500; font-size: 11px; color: var(--text-secondary);">Overview</span>
-            <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--text-primary); margin-top: 2px;">Projects</h2>
+            <span class="timeline-meta" style="font-weight: 500; font-size: 11px; color: var(--text-secondary);">Workspace</span>
+            <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--text-primary); margin-top: 2px;">My Notes</h2>
           </div>
 
-          <!-- Project Scrollable List Container -->
-          <div class="projects-list-scroll-wrapper" style="overflow-y: auto; flex: 1; padding-right: 2px; margin-bottom: 10px;">
-            <div class="projects-vertical-list" id="projects-list" style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Notes Scrollable List Container -->
+          <div class="notes-list-scroll-wrapper" style="overflow-y: auto; flex: 1; padding-right: 2px; margin-bottom: 10px;">
+            <div class="notes-vertical-list" id="notes-list" style="display: flex; flex-direction: column; gap: 14px;">
               
-              <!-- Project Card 1 (Xyora) -->
-              <div class="project-card-custom project-xyora" onclick="window.location.href='project-detail.html?project=Xyora'">
-                <div class="project-logo-container">
-                  <img src="projects/xyora.svg" alt="Xyora" class="project-logo-img" />
+              <!-- Note Item 1 (Work) -->
+              <div class="note-swipe-wrapper">
+                <div class="note-delete-action">
+                  <i class="fa-solid fa-trash-can"></i>
                 </div>
-                <div class="project-detail-container">
-                  <h4 class="project-name">Xyora</h4>
-                  <span class="project-status-dot"></span>
-                </div>
-              </div>
-
-              <!-- Project Card 2 (Computask) -->
-              <div class="project-card-custom project-computask" onclick="window.location.href='project-detail.html?project=Computask'">
-                <div class="project-logo-container">
-                  <img src="projects/computask.png" alt="Computask" class="project-logo-img" />
-                </div>
-                <div class="project-detail-container">
-                  <h4 class="project-name">Computask</h4>
-                  <span class="project-status-dot"></span>
+                <div class="note-card-custom">
+                  <div class="note-card-header">
+                    <h4 class="note-title">Meeting Outline</h4>
+                  </div>
+                  <p class="note-snippet">Discuss wireframes with the creative design team. Review progress on typography, colors, and the new visual hierarchy...</p>
+                  <span class="note-date">13 August 2020</span>
                 </div>
               </div>
 
-              <!-- Project Card 3 (MKT Central Directory) -->
-              <div class="project-card-custom project-ctigroup" onclick="window.location.href='project-detail.html?project=MKT%20Central%20Directory'">
-                <div class="project-logo-container">
-                  <img src="projects/mkt-central-directory.png" alt="MKT Central Directory" class="project-logo-img" />
+              <!-- Note Item 2 (Idea) -->
+              <div class="note-swipe-wrapper">
+                <div class="note-delete-action">
+                  <i class="fa-solid fa-trash-can"></i>
                 </div>
-                <div class="project-detail-container">
-                  <h4 class="project-name">MKT Central Directory</h4>
-                  <span class="project-status-dot on-hold"></span>
+                <div class="note-card-custom">
+                  <div class="note-card-header">
+                    <h4 class="note-title">App Features Idea</h4>
+                  </div>
+                  <p class="note-snippet">Implement swipe animations on tasks, expandable monthly calendar layout, brand color pulse indicators, and inset dividers...</p>
+                  <span class="note-date">12 August 2020</span>
+                </div>
+              </div>
+
+              <!-- Note Item 3 (Personal) -->
+              <div class="note-swipe-wrapper">
+                <div class="note-delete-action">
+                  <i class="fa-solid fa-trash-can"></i>
+                </div>
+                <div class="note-card-custom">
+                  <div class="note-card-header">
+                    <h4 class="note-title">Weekly Groceries List</h4>
+                  </div>
+                  <p class="note-snippet">Apples, Organic bananas, Almond milk, Dark roast coffee beans, Whole wheat bread, Spinach, Avocados...</p>
+                  <span class="note-date">10 August 2020</span>
                 </div>
               </div>
 
@@ -166,18 +180,23 @@
           </div>
         </div>
 
+        <!-- Floating Action Button (FAB) -->
+        <button class="fab-btn" id="trigger-create-task" title="Add Note">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+
         <!-- Sticky Bottom Navigation Bar (links to other pages) -->
         <nav class="phone-bottom-nav">
-          <a href="index.html" class="nav-btn" title="Home">
+          <a href="/" class="nav-btn" title="Home">
             <i class="fa-solid fa-house"></i>
           </a>
-          <a href="schedule.html" class="nav-btn" title="Calendar">
+          <a href="/schedule" class="nav-btn" title="Calendar">
             <i class="fa-regular fa-calendar"></i>
           </a>
-          <a href="project.html" class="nav-btn active" title="Projects">
+          <a href="/projects" class="nav-btn" title="Projects">
             <i class="fa-solid fa-briefcase"></i>
           </a>
-          <a href="notes.html" class="nav-btn" title="Notes">
+          <a href="/notes" class="nav-btn active" title="Notes">
             <i class="fa-regular fa-pen-to-square"></i>
           </a>
         </nav>
@@ -200,78 +219,23 @@
                     type="text"
                     class="text-input"
                     id="t-title"
-                    placeholder="Project/Task Title"
+                    placeholder="Note Title"
                     required
                   />
                 </div>
                 <div class="form-group">
-                  <label class="field-label">Creation date</label>
-                  <input
-                    type="text"
+                  <label class="field-label">Note Content</label>
+                  <textarea
                     class="text-input"
-                    id="t-cdate"
-                    value="17 August 2020"
-                  />
+                    id="t-desc"
+                    placeholder="Write your thoughts here..."
+                    rows="6"
+                    style="resize: none; height: 120px; padding: 12px 16px; border-radius: 14px; font-family: inherit; font-size: 13px; line-height: 1.6; box-sizing: border-box;"
+                    required
+                  ></textarea>
                 </div>
-                <div class="form-group">
-                  <div class="date-time-header">
-                    <label class="field-label">Start date & time</label>
-                    <div class="month-selector-dropdown">
-                      <span class="month-label">August</span>
-                      <svg
-                        class="dropdown-chevron"
-                        viewBox="0 0 24 24"
-                        width="16"
-                        height="16"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                      >
-                        <polyline points="6 9 12 15 18 9" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="modal-date-picker-row">
-                    <div class="modal-date-col" data-day="10">
-                      <span class="m-day-name">MON</span
-                      ><span class="m-day-number">10</span>
-                    </div>
-                    <div class="modal-date-col active-m-day" data-day="11">
-                      <span class="m-day-name">TUE</span
-                      ><span class="m-day-number">11</span
-                      ><span class="active-dot"></span>
-                    </div>
-                    <div class="modal-date-col" data-day="12">
-                      <span class="m-day-name">WED</span
-                      ><span class="m-day-number">12</span>
-                    </div>
-                    <div class="modal-date-col" data-day="13">
-                      <span class="m-day-name">THU</span
-                      ><span class="m-day-number">13</span>
-                    </div>
-                    <div class="modal-date-col" data-day="14">
-                      <span class="m-day-name">FRI</span
-                      ><span class="m-day-number">14</span>
-                    </div>
-                    <div class="modal-date-col" data-day="15">
-                      <span class="m-day-name">SAT</span
-                      ><span class="m-day-number">15</span>
-                    </div>
-                    <div class="modal-date-col" data-day="16">
-                      <span class="m-day-name">SUN</span
-                      ><span class="m-day-number">16</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-toggle-group">
-                  <span class="toggle-label">Get alert for this task</span>
-                  <label class="switch">
-                    <input type="checkbox" id="t-alert" checked />
-                    <span class="slider round"></span>
-                  </label>
-                </div>
-                <button type="submit" class="cta-submit-btn">
-                  Create project
+                <button type="submit" class="cta-submit-btn" style="margin-top: 10px;">
+                  Create note
                 </button>
               </form>
             </div>
@@ -282,10 +246,10 @@
 
     <!-- Notification Toast -->
     <div class="notification-toast" id="toast-message">
-      Project created successfully!
+      Note created successfully!
     </div>
 
     <!-- Scripts -->
-    <script src="app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
   </body>
 </html>

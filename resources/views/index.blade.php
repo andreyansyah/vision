@@ -14,7 +14,7 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- Link Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=42" />
+    <link rel="stylesheet" href="{{ asset('css/style.css?v=42') }}" />
   </head>
   <body>
     <!-- Main Mockup Workspace Container -->
@@ -326,16 +326,16 @@
 
         <!-- Sticky Bottom Navigation Bar (links to other pages) -->
         <nav class="phone-bottom-nav">
-          <a href="index.html" class="nav-btn active" title="Home">
+          <a href="/" class="nav-btn active" title="Home">
             <i class="fa-solid fa-house"></i>
           </a>
-          <a href="schedule.html" class="nav-btn" title="Calendar">
+          <a href="/schedule" class="nav-btn" title="Calendar">
             <i class="fa-regular fa-calendar"></i>
           </a>
-          <a href="project.html" class="nav-btn" title="Projects">
+          <a href="/projects" class="nav-btn" title="Projects">
             <i class="fa-solid fa-briefcase"></i>
           </a>
-          <a href="notes.html" class="nav-btn" title="Notes">
+          <a href="/notes" class="nav-btn" title="Notes">
             <i class="fa-regular fa-pen-to-square"></i>
           </a>
         </nav>
@@ -444,6 +444,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
   </body>
 </html>
