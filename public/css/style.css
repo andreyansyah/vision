@@ -1531,12 +1531,12 @@ input:checked + .slider:before {
   box-shadow: 0 20px 40px rgba(239, 68, 68, 0.14);
 }
 
-.project-ctigroup {
+.project-ctigroup, .project-mcd {
   background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%);
   border: 1px solid rgba(16, 185, 129, 0.12);
   box-shadow: 0 10px 30px rgba(16, 185, 129, 0.05);
 }
-.project-ctigroup:hover {
+.project-ctigroup:hover, .project-mcd:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(16, 185, 129, 0.14);
 }

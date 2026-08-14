@@ -130,7 +130,7 @@
             <div class="projects-vertical-list" id="projects-list" style="display: flex; flex-direction: column; gap: 16px;">
               
               @foreach ($projects as $project)
-              <div class="project-card-custom project-{{ strtolower(explode(' ', $project->name)[0]) }}" onclick="window.location.href='/project-detail?project={{ urlencode($project->name) }}'">
+              <div class="project-card-custom project-{{ strtolower($project->code_project) }}" onclick="window.location.href='/project-detail?project={{ urlencode($project->name) }}'">
                 <div class="project-logo-container">
                   <img src="{{ asset($project->logo) }}" alt="{{ $project->name }}" class="project-logo-img" />
                 </div>
