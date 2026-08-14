@@ -21,6 +21,8 @@
     <!-- Summernote Lite CSS & JS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <!-- Main Mockup Workspace Container -->
@@ -337,24 +339,38 @@
                       success: function(res) {
                           if (res.status === 'success') {
                               closeSheet();
-                              showToast(isEdit ? "Catatan berhasil diperbarui!" : "Catatan berhasil ditambahkan!");
                               
-                              // Reload page setelah delay kecil agar toast terlihat
+                              // SweetAlert2 Toast
+                              Swal.fire({
+                                  toast: true,
+                                  position: 'top-end',
+                                  icon: 'success',
+                                  title: isEdit ? "Catatan berhasil diperbarui!" : "Catatan berhasil ditambahkan!",
+                                  showConfirmButton: false,
+                                  timer: 1500,
+                                  timerProgressBar: true
+                              });
+                              
                               setTimeout(() => {
                                   window.location.reload();
-                              }, 1200);
+                              }, 1500);
                           }
                       },
                       error: function(err) {
                           console.error("Gagal menyimpan catatan:", err);
-                          alert("Terjadi kesalahan saat menyimpan catatan.");
+                          Swal.fire({
+                              icon: 'error',
+                              title: 'Gagal',
+                              text: 'Terjadi kesalahan saat menyimpan catatan.',
+                              confirmButtonColor: '#6C5DD3'
+                          });
                       }
                   });
               });
           }
           
           // 4. Overwrite default click delete action in bindSwipeEvent
-          // Mengubah fungsi klik icon trash agar memanggil AJAX DELETE ke backend
+          // Mengubah fungsi klik icon trash agar memanggil AJAX DELETE ke backend dengan SweetAlert2
           $('.note-delete-action').off('click').on('click', function(e) {
               e.stopPropagation();
               const wrapper = $(this).closest('.note-swipe-wrapper');
@@ -365,34 +381,60 @@
                   return;
               }
               
-              if (confirm("Apakah Anda yakin ingin menghapus catatan ini?")) {
-                  $.ajax({
-                      url: `/notes/${noteId}`,
-                      type: 'DELETE',
-                      success: function(res) {
-                          if (res.status === 'success') {
-                              wrapper.css({
-                                  transition: 'max-height 0.3s ease, margin-bottom 0.3s ease, opacity 0.3s ease',
-                                  maxHeight: '0',
-                                  marginBottom: '0',
-                                  opacity: '0'
+              Swal.fire({
+                  title: 'Apakah Anda yakin?',
+                  text: "Catatan ini akan dihapus secara permanen!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#ef4444',
+                  cancelButtonColor: '#9CA3AF',
+                  confirmButtonText: 'Ya, hapus!',
+                  cancelButtonText: 'Batal'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      $.ajax({
+                          url: `/notes/${noteId}`,
+                          type: 'DELETE',
+                          success: function(res) {
+                              if (res.status === 'success') {
+                                  wrapper.css({
+                                      transition: 'max-height 0.3s ease, margin-bottom 0.3s ease, opacity 0.3s ease',
+                                      maxHeight: '0',
+                                      marginBottom: '0',
+                                      opacity: '0'
+                                  });
+                                  setTimeout(() => {
+                                      wrapper.remove();
+                                      // Tampilkan empty state jika tidak ada catatan tersisa
+                                      if ($('.note-swipe-wrapper').length === 0) {
+                                          window.location.reload();
+                                      }
+                                  }, 300);
+                                  
+                                  // SweetAlert2 Toast
+                                  Swal.fire({
+                                      toast: true,
+                                      position: 'top-end',
+                                      icon: 'success',
+                                      title: 'Catatan berhasil dihapus!',
+                                      showConfirmButton: false,
+                                      timer: 1500,
+                                      timerProgressBar: true
+                                  });
+                              }
+                          },
+                          error: function(err) {
+                              console.error("Gagal menghapus catatan:", err);
+                              Swal.fire({
+                                  icon: 'error',
+                                  title: 'Gagal',
+                                  text: 'Gagal menghapus catatan.',
+                                  confirmButtonColor: '#6C5DD3'
                               });
-                              setTimeout(() => {
-                                  wrapper.remove();
-                                  // Tampilkan empty state jika tidak ada catatan tersisa
-                                  if ($('.note-swipe-wrapper').length === 0) {
-                                      window.location.reload();
-                                  }
-                              }, 300);
-                              showToast("Catatan berhasil dihapus!");
                           }
-                      },
-                      error: function(err) {
-                          console.error("Gagal menghapus catatan:", err);
-                          alert("Gagal menghapus catatan.");
-                      }
-                  });
-              }
+                      });
+                  }
+              });
           });
       });
     </script>
